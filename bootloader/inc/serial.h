@@ -75,7 +75,7 @@ void serial_putchar(unsigned int port, char c);
  */
 char serial_getchar(unsigned int port);
 
-#endif
+#endif // CONFIG_ENABLE_SERIAL_GETCHAR
 
 
 /* 
@@ -131,7 +131,7 @@ static inline char serial_console_getchar(void)
     return serial_getchar(serial_console_port);
 }
 
-#endif
+#endif //CONFIG_ENABLE_SERIAL_GETCHAR
 
 
 /* 
@@ -187,6 +187,6 @@ static inline char serial_debug_getchar(void)
     return serial_getchar(serial_debug_port);
 }
 
-#endif
+#endif // CONFIG_ENABLE_SERIAL_GETCHAR
 
 #endif  // SERIAL_H_
