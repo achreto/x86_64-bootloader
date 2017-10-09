@@ -22,21 +22,65 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
+ */ 
+
+#ifndef BOOTLADER_TYPES_H_ 
+#define BOOTLADER_TYPES_H_ 1
+
+#include <stdint.h>
+#include <inttypes.h>
+
+#include <config.h>
 
 
+#if CONFIG_BUILD_64_BIT_ADDRESSES
+
+///< represents a local physical address
+typedef uint64_t lpaddr_t;
+
+///< printf placeholder for local physical address
+#define PRIxLPADDR PRIx64
 
 
-///< size of ram to be mapped by the boot loader
-#define CONFIG_RAM_SIZE (512ULL << 30)
+///< represents a local virtual address
+typedef uint64_t lvaddr_t;
+
+///< printf placeholder for local virtual address
+#define PRIxLVADDR PRIx64
 
 
-///< the kernel virtual offset 
-#define CONFIG_KERNEL_VIRTUAL_OFFSET
+#else
 
 
-///< whether or not serial input is provided
-#define CONFIG_ENABLE_SERIAL_GETCHAR 0
+///< represents a local physical address
+typedef uint32_t lpaddr_t;
 
-///< whether to use 64-it lpaddr_t and lvaddr_t
-#define CONFIG_BUILD_64_BIT_ADDRESSES 0
+///< printf placeholder for local physical address
+#define PRIxLPADDR PRIx32
+
+
+///< represents a local virtual address
+typedef uint32_t lvaddr_t;
+
+///< printf placeholder for local virtual address
+#define PRIxLVADDR PRIx32
+
+
+#endif CONFIG_BUILD_64_BIT_ADDRESSES
+
+
+///< represents a generic virtual address
+typedef uint64_t genvaddr_t;
+
+///< printf placeholder for generic virtual address
+#define PRIxGENVADDR PRIx64
+
+
+///< represents a generic physical address
+typedef uint64_t genpaddr_t;
+
+///< printf placeholder for generic physical address
+#define PRIxGENPADDR PRIx64
+
+
+#endif // BOOTLADER_TYPES_H_
